@@ -34,6 +34,9 @@
 @media(max-width:500px){.main-nav .header-cta{display:inline-flex;margin:4px 0 0;padding:15px 18px}}
 .header-cta,.header-cta span{color:#fff}
 .main-nav .header-cta,.main-nav .header-cta span{color:#fff}
+.main-nav .header-cta:link,.main-nav .header-cta:visited,.main-nav .header-cta:hover,.main-nav .header-cta:focus,.main-nav .header-cta:active,.main-nav .header-cta:link span,.main-nav .header-cta:visited span,.main-nav .header-cta:hover span,.main-nav .header-cta:focus span,.main-nav .header-cta:active span{color:#fff}
+
+@media(max-width:1150px){.main-nav.open{align-items:stretch;text-align:center}.main-nav.open>a{width:100%;justify-content:center;text-align:center}.main-nav.open .header-cta{display:inline-flex}}
 
 @keyframes hero-image-enter{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .hero-visual img{animation:hero-image-enter 1.35s cubic-bezier(.16,1,.3,1) .18s both}
