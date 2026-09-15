@@ -447,3 +447,25 @@
 .contact-map-frame{display:block;width:100%;height:440px;border:0}
 @media(max-width:1184px){.contact-map-heading{margin:0 5vw}}
 @media(max-width:767px){.contact-map{margin:32px -16px 0}.contact-map-heading{margin:0;padding:28px 20px;flex-direction:column;text-align:center;gap:20px}.contact-map-heading h2{font-size:29px}.contact-map-frame{height:350px}.contact-map + .contact-form-section{margin-top:32px}}
+
+/* Menu de navegação em tela cheia, acima inclusive do cabeçalho fixo. */
+html.navigation-open{overflow:hidden}
+.fullscreen-menu{position:fixed;inset:0;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;padding:80px 24px;border:0;background:var(--cream);color:var(--ink);opacity:0;transform:translateY(-12px);transition:opacity .24s ease,transform .24s ease;overflow:auto}
+.fullscreen-menu[open]{display:flex;align-items:center;justify-content:center}
+.fullscreen-menu.is-visible{opacity:1;transform:translateY(0)}
+.fullscreen-menu::backdrop{background:transparent}
+.fullscreen-menu-links{display:flex;flex-direction:column;align-items:center;gap:clamp(16px,3vh,30px);text-align:center;margin:auto}
+.fullscreen-menu-links a{font-family:"Manrope",sans-serif;font-size:clamp(30px,6vw,56px);font-weight:600;line-height:1.25;letter-spacing:-1px;color:var(--ink);text-decoration:none;transition:color .2s ease,transform .2s ease}
+.fullscreen-menu-links a:hover,.fullscreen-menu-links a.active,.fullscreen-menu-links a[aria-current="page"]{color:var(--bright)}
+.fullscreen-menu-links a:hover{transform:translateY(-2px)}
+.fullscreen-menu-close{position:absolute;top:max(20px,env(safe-area-inset-top));right:max(24px,env(safe-area-inset-right));width:48px;height:48px;border:0;border-radius:0;background:transparent;color:var(--green);font:36px/1 "DM Sans",sans-serif;cursor:pointer}
+.fullscreen-menu a:focus-visible,.fullscreen-menu-close:focus-visible{outline:2px solid var(--green);outline-offset:6px}
+@media(prefers-reduced-motion:reduce){.fullscreen-menu,.fullscreen-menu-links a{transition:none;transform:none}}
+/* Distância consistente entre o cabeçalho e o primeiro conteúdo. */
+:root{--page-header-gap:56px}
+.about-profile,.services-catalog,.gallery-content,.contact-page{padding-top:var(--page-header-gap)}
+
+@media(max-width:767px){
+  :root{--page-header-gap:40px}
+  .home-page .hero{padding-top:var(--page-header-gap)}
+}

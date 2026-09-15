@@ -1,14 +1,52 @@
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
-toggle.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open);
-});
-nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-  nav.classList.remove('open');
-  toggle.setAttribute('aria-expanded', 'false');
-}));
+const menuDialog = document.createElement('dialog');
+menuDialog.id = 'fullscreen-menu';
+menuDialog.className = 'fullscreen-menu';
+menuDialog.setAttribute('aria-label', 'Menu principal');
+const menuClose = document.createElement('button');
+menuClose.type = 'button';
+menuClose.className = 'fullscreen-menu-close';
+menuClose.setAttribute('aria-label', 'Fechar menu');
+menuClose.textContent = '×';
+const menuLinks = nav.cloneNode(true);
+menuLinks.className = 'fullscreen-menu-links';
+menuDialog.append(menuClose, menuLinks);
+document.body.append(menuDialog);
+toggle.setAttribute('aria-controls', menuDialog.id);
+toggle.setAttribute('aria-haspopup', 'dialog');
+let menuCloseTimer;
 
+function closeMenu() {
+  if (!menuDialog.open) return;
+  menuDialog.classList.remove('is-visible');
+  toggle.setAttribute('aria-expanded', 'false');
+  clearTimeout(menuCloseTimer);
+  const finish = () => menuDialog.close();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) finish();
+  else menuCloseTimer = setTimeout(finish, 260);
+}
+
+toggle.addEventListener('click', () => {
+  clearTimeout(menuCloseTimer);
+  menuDialog.showModal();
+  document.documentElement.classList.add('navigation-open');
+  toggle.setAttribute('aria-expanded', 'true');
+  requestAnimationFrame(() => {
+    if (menuDialog.open) menuDialog.classList.add('is-visible');
+  });
+});
+menuClose.addEventListener('click', closeMenu);
+menuDialog.addEventListener('cancel', event => {
+  event.preventDefault();
+  closeMenu();
+});
+menuDialog.addEventListener('close', () => {
+  document.documentElement.classList.remove('navigation-open');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.focus({ preventScroll: true });
+});
+menuLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 const header = document.querySelector('.site-header');
 const headerCta = document.querySelector('.header-cta');
 
