@@ -458,7 +458,7 @@ html.navigation-open{overflow:hidden}
 .fullscreen-menu-links a{font-family:"Manrope",sans-serif;font-size:clamp(30px,6vw,56px);font-weight:600;line-height:1.25;letter-spacing:-1px;color:var(--ink);text-decoration:none;transition:color .2s ease,transform .2s ease}
 .fullscreen-menu-links a:hover,.fullscreen-menu-links a.active,.fullscreen-menu-links a[aria-current="page"]{color:var(--bright)}
 .fullscreen-menu-links a:hover{transform:translateY(-2px)}
-.fullscreen-menu-close{position:absolute;top:max(20px,env(safe-area-inset-top));right:max(24px,env(safe-area-inset-right));width:48px;height:48px;border:0;border-radius:0;background:transparent;color:var(--green);font:36px/1 "DM Sans",sans-serif;cursor:pointer}
+.fullscreen-menu-close{position:absolute;top:max(20px,env(safe-area-inset-top));right:max(24px,env(safe-area-inset-right));width:48px;height:48px;border:0;border-radius:0;background:transparent;color:var(--green);font:52px/1 "DM Sans",sans-serif;cursor:pointer;display:grid;place-items:center;padding:0}
 .fullscreen-menu a:focus-visible,.fullscreen-menu-close:focus-visible{outline:2px solid var(--green);outline-offset:6px}
 @media(prefers-reduced-motion:reduce){.fullscreen-menu,.fullscreen-menu-links a{transition:none;transform:none}}
 /* Distância consistente entre o cabeçalho e o primeiro conteúdo. */
